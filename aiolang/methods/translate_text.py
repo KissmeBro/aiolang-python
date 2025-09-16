@@ -75,7 +75,10 @@ class TranslateText:
                         )
 
                     translation = await response.json()
-                    return translation[0][0][0]
+                    print(translation)
+                    # Combine all translated segments into one string
+                    full_translation = "".join([item[0] for item in translation[0]])
+                    return full_translation
 
         except aiohttp.ClientError as e:
             raise TranslationError(
